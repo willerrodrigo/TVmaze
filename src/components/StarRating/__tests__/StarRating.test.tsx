@@ -3,7 +3,24 @@ import {render} from '@testing-library/react-native';
 import {StarRating} from '../StarRating';
 
 describe('StarRating', () => {
-  it('should render the component', () => {
-    render(<StarRating rating={{average: 5}} />);
+  describe('when there is no rating', () => {
+    it('should not render the component', () => {
+      const {root} = render(<StarRating />);
+      expect(root).toBeUndefined();
+    });
+  });
+
+  describe('when there is a rating', () => {
+    it('should render the average text', () => {
+      const rating = {average: 3.5};
+      const {getByText} = render(<StarRating rating={rating} />);
+      expect(getByText('3.5')).toBeTruthy();
+    });
+
+    it('should render the star icon', () => {
+      const rating = {average: 3.5};
+      const {getByTestId} = render(<StarRating rating={rating} />);
+      expect(getByTestId('star-icon')).toBeTruthy();
+    });
   });
 });
