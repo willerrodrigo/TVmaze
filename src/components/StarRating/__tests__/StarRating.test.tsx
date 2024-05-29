@@ -1,6 +1,6 @@
 import React from 'react';
-import {render} from '@testing-library/react-native';
 import {StarRating} from '../StarRating';
+import {render} from 'test-utils';
 
 describe('StarRating', () => {
   describe('when there is no rating', () => {
